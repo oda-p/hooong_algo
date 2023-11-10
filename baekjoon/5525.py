@@ -4,16 +4,17 @@ n = int(sys.stdin.readline())
 m = int(sys.stdin.readline())
 s = sys.stdin.readline()
 
-target = "I"
-for _ in range(n):
-    target += "OI"
+cnt = 0
+tmp_cnt = 0
+cur = 0
+while cur < m - 1:
+    if s[cur : cur + 3] == "IOI":
+        tmp_cnt += 1
+        if tmp_cnt >= n:
+            cnt += 1
+        cur += 2
+    else:
+        tmp_cnt = 0
+        cur += 1
 
-count = 0
-for i in range(m - len(target) + 1):
-    if not s[i] == "I":
-        continue
-
-    if s[i : i + len(target)] == target:
-        count += 1
-
-print(count)
+print(cnt)
